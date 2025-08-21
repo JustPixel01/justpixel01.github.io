@@ -1,357 +1,261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🛡️ MC-HELDEN 2 Modpack Wiki</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MC-HELDEN 2</title>
   <style>
-    :root {
-      --bg:#0b0f14; --card:#121821; --muted:#8aa1b1;
-      --text:#dbe6ee; --accent:#5cc8ff; --accent-glow: rgba(92,200,255,0.3);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-      background: linear-gradient(180deg, #071019, #0b0f14 120%);
-      color: var(--text);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #f1f5f9;
       line-height: 1.6;
     }
 
-    /* Fixed Navbar */
-    nav {
-      position: sticky;
-      top: 0; left: 0; right: 0;
-      background: rgba(11,15,20,0.95);
-      border-bottom: 1px solid #223040;
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-    }
-    nav .navwrap {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex; flex-wrap: wrap;
-      align-items: center;
+    header {
+      background: #1e293b;
+      padding: 1rem 2rem;
+      display: flex;
       justify-content: space-between;
-      padding: 10px 16px;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    nav h1 { font-size: 1.2rem; }
-    nav .navlinks {
-      display: flex; flex-wrap: wrap; gap: 8px;
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    nav .navlinks a {
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: #0f1520;
-      border: 1px solid #223040;
-      color: var(--text);
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    nav a {
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all .25s ease;
-    }
-    nav .navlinks a:hover {
-      background: var(--accent);
-      color: #0b0f14;
-      border-color: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
+      background: #334155;
+      color: #f1f5f9;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
     }
 
-    /* Layout */
-    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
-
-    header { text-align: center; margin: 40px 0 32px; }
-    header h2 { font-size: 2.2rem; margin-bottom: 12px; }
-    header p { color: var(--muted); max-width: 68ch; margin: 0 auto; }
-
-    hr {
-      border: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, #2b3a49, transparent);
-      margin: 32px 0;
+    nav a:hover {
+      background: #38bdf8;
+      color: #0f172a;
     }
 
-    /* Details Cards */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
     details {
-      background: var(--card);
-      border: 1px solid #1d2836;
-      border-radius: 14px;
-      margin: 18px 0;
+      background: #1e293b;
+      border-radius: 1rem;
+      margin-bottom: 1.2rem;
       overflow: hidden;
-      transition: all .3s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      border: 1px solid #334155;
     }
+
     summary {
-      list-style: none;
       cursor: pointer;
-      padding: 16px 18px;
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700;
-      background: linear-gradient(180deg, #121a24, #0f1620);
-      user-select: none;
-      font-size: 1.05rem;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      background: #0f172a;
+      transition: background 0.2s;
     }
-    summary::-webkit-details-marker { display: none; }
-    .chev {
-      width: 18px; height: 18px;
-      display: inline-block;
-      transform: rotate(-90deg);
-      transition: transform .25s ease;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
+
+    summary:hover {
+      background: #334155;
     }
-    details[open] .chev { transform: rotate(0); }
 
     .content {
-      padding: 20px;
-      border-top: 1px solid #223040;
-      animation: fadeIn .3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding: 1rem 1.5rem 1.5rem;
+      background: #1e293b;
     }
 
-    .content h2 { margin: 0 0 12px; font-size: 1.3rem; }
-    .content h3 { margin: 14px 0 6px; font-size: 1.1rem; }
-    .content p { margin: 8px 0 14px; color: var(--muted); }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #38bdf8;
+    }
 
-    /* Listen */
-    ul, ol { margin: 8px 0 8px 20px; }
-    .mods { columns: 2; column-gap: 24px; }
-    @media (max-width: 720px) { .mods { columns: 1; } }
-    .note { font-size: .95rem; color: var(--muted); }
+    h3 {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.5rem;
+      color: #f87171;
+    }
 
-    /* Links & Buttons */
-    a { color: var(--accent); }
+    ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
     code {
-      background: #0e1520;
-      padding: 2px 6px;
-      border-radius: 6px;
-      border: 1px solid #1b2735;
-      font-size: 0.95rem;
+      background: #0f172a;
+      color: #22c55e;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.3rem;
+      font-size: 0.9rem;
     }
+
     .btn {
       display: inline-block;
-      margin: 6px 0;
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #0b0f14;
-      font-weight: 600;
+      background: #38bdf8;
+      color: #0f172a;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
       text-decoration: none;
-      transition: all .25s ease;
-    }
-    .btn:hover {
-      box-shadow: 0 0 10px var(--accent-glow);
-      transform: translateY(-2px);
+      transition: all 0.2s ease;
     }
 
-    /* Footer */
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #6e8090;
-      font-size: .9rem;
-      padding-top: 20px;
-      border-top: 1px solid #223040;
+    .btn:hover {
+      background: #0ea5e9;
+      color: #fff;
+    }
+
+    .note {
+      font-style: italic;
+      color: #94a3b8;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="navwrap">
-      <h1>🛡️ MC-HELDEN 2</h1>
-      <div class="navlinks">
-        <a href="#downloads">Downloads</a>
-        <a href="#mods-im-modpack">Mods</a>
-        <a href="#herzens-mod">Herzens Mod</a>
-        <a href="#server-setup">Server</a>
-        <a href="#discord">Discord</a>
-        <a href="#update-log">Updates</a>
-      </div>
-    </div>
-  </nav>
+  <header>
+    <h1>🛡️ MC-HELDEN 2</h1>
+    <nav>
+      <a href="#downloads">Downloads</a>
+      <a href="#mods">Mods</a>
+      <a href="#herzens-mod">Herzens Mod</a>
+      <a href="#server-setup">Server</a>
+      <a href="#discord">Discord</a>
+      <a href="#updates">Updates</a>
+    </nav>
+  </header>
 
-  <div class="wrap">
-    <header>
-      <h2>MC-HELDEN 2 Modpack Wiki</h2>
-      <p>Willkommen beim offiziellen Wiki für das Minecraft Modpack <strong>MC-HELDEN 2</strong>. Dieses Modpack enthält alle Mods aus dem Youtuber Projekt Minecraft Helden 2.</p>
-    </header>
-
+  <main>
     <!-- Downloads -->
-    <details>
-      <summary><span class="chev"></span>⬇️ Downloads</summary>
+    <details open>
+      <summary>⬇️ Downloads</summary>
       <div class="content">
         <h2 id="downloads">Downloads</h2>
-        <p class="note">Aktuelle Versionen bitte über Modrinth installieren.</p>
-        <a class="btn" target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/modpacks/m-helden-2/download/6911119">Version 1.4 Curseforge</a><br>
-        <a class="btn" target="_blank" rel="noopener" href="https://cdn.modrinth.com/data/e6bYf6iC/versions/vbo9Tvf8/MC-HELDEN%202%201.4.mrpack">Version 1.4 Modrinth</a>
+        <p>Hier kannst du das offizielle Modpack herunterladen:</p>
+        <a href="#" class="btn">📦 Modrinth Download</a>
+        <a href="#" class="btn">📦 CurseForge Download</a>
       </div>
     </details>
 
     <!-- Mods -->
     <details>
-      <summary><span class="chev"></span>🧩 Mods im Modpack</summary>
+      <summary>🧩 Mods im Modpack</summary>
       <div class="content">
-        <h2 id="mods-im-modpack">Mods im Modpack</h2>
-        <div class="mods">
-          <ul>
-            <li>LuckPerms (by Iucko)</li>
-            <li>Simple Voice Chat (by henkelmax)</li>
-            <li>Iris Shaders (by coderbot)</li>
-            <li>Collective (by Serilum)</li>
-            <li>FancyMenu (by Keksuccino)</li>
-            <li>Carry On (by Tschipp)</li>
-            <li>Konkrete [Forge NeoForge] (by Keksuccino)</li>
-            <li>AppleSkin (by squeek502)</li>
-            <li>YUNGs Better Strongholds NeoForge (by YUNGNICKYOUNG)</li>
-            <li>Not Enough Crashes Forge (by NatanFudge)</li>
-            <li>Klleyys Hearts (by Loddyy21)</li>
-            <li>ETF Entity Texture Features Fabric Forge (by Traben)</li>
-            <li>Melody (by Keksuccino)</li>
-            <li>FerriteCore NeoForge (by malte0811)</li>
-            <li>Euphoria Patches (by SpacEagle17)</li>
-            <li>Puzzles Lib (by Fuzs)</li>
-            <li>Complementary Shaders Unbound (by EminGT)</li>
-            <li>Low On Fire (by Haikis)</li>
-            <li>Uranus (by IAFEnvoy)</li>
-            <li>Chat Heads (by dzwdz)</li>
-            <li>Just Enough Items JEI (by mezz)</li>
-            <li>YUNGs Better End Island NeoForge (by YUNGNICKYOUNG)</li>
-            <li>Fresh Animations (by FreshLX)</li>
-            <li>YUNGs Better Ocean Monuments NeoForge (by YUNGNICKYOUNG)</li>
-            <li>GraveStone Mod (by henkelmax)</li>
-            <li>Leaves Be Gone (by Fuzs)</li>
-            <li>Resourcify (by DeDiamondPro)</li>
-            <li>Complementary Shaders Reimagined (by EminGT)</li>
-            <li>Accessories (by Blodhgarm)</li>
-            <li>YUNGs Better Desert Temples NeoForge (by YUNGNICKYOUNG)</li>
-            <li>Mouse Tweaks (by YaLTeR)</li>
-            <li>spark (by Iucko)</li>
-            <li>GeckoLib (by Gecko)</li>
-            <li>Backpacked (by MrCrayfish)</li>
-            <li>MrCrayfishs Furniture Mod Refurbished (by MrCrayfish)</li>
-            <li>Model Gap Fix (by MehVahdJukaar)</li>
-            <li>Curios API Forge NeoForge (by TheIllusiveC4)</li>
-            <li>YUNGs Better Mineshafts NeoForge (by YUNGNICKYOUNG)</li>
-            <li>YUNGs API NeoForge (by YUNGNICKYOUNG)</li>
-            <li>Architectury API (by shedaniel)</li>
-            <li>EMF Entity Model Features Fabric Forge (by Traben)</li>
-            <li>ImmediatelyFast (by RaphiMC)</li>
-            <li>Mighty Mail (by MrCrayfish)</li>
-            <li>Vanishmod (by MasterPerki)</li>
-            <li>SuperMartijn642s Config Lib (by SuperMartijn642)</li>
-            <li>Continuity (by Pepper_Bell)</li>
-            <li>Sodium (by JellySquid)</li>
-            <li>BaguetteLib (by Project8gbDeRam)</li>
-            <li>GriefLogger (by DAQEM)</li>
-            <li>owo lib (by gliscowo)</li>
-            <li>Gravestone x Curios API Compat (by Project8gbDeRam)</li>
-            <li>Framework (by MrCrayfish)</li>
-            <li>Fresh Moves (by TrasTick)</li>
-            <li>Dynamic FPS (by juliand665)</li>
-            <li>Lithium Fabric NeoForge (by JellySquid)</li>
-            <li>Comforts Fabric Forge Quilt (by TheIllusiveC4)</li>
-            <li>Inv View Forge NeoForge (by RazorPlay01)</li>
-            <li>Not Enough Animations (by tr7zw)</li>
-            <li>Skin Layers 3D Fabric Forge (by tr7zw)</li>
-            <li>Entity Culling Fabric Forge (by tr7zw)</li>
-          </ul>
-        </div>
+        <h2 id="mods">Mods im Modpack</h2>
+        <ul>
+          <li>LuckPerms (by lucko)</li>
+          <li>Simple Voice Chat (by henkelmax)</li>
+          <li>Iris Shaders (by coderbot)</li>
+          <li>Collective (by Serilum)</li>
+        </ul>
       </div>
     </details>
 
     <!-- Herzens Mod -->
     <details>
-      <summary><span class="chev"></span>❤️ Herzens Mod</summary>
+      <summary>❤️ Herzens Mod</summary>
       <div class="content">
         <h2 id="herzens-mod">Herzens Mod</h2>
-        <h3>Items</h3>
-        <p><strong>Seelen Amulett Soul Amulet</strong></p>
+
+        <h3>🪙 Items</h3>
+        <p><strong>Seelen Amulett (Soul Amulet)</strong></p>
         <ul>
-          <li>Behält dein Herz wenn du in einem Kampf stirbst</li>
-          <li>Kann nicht im Survival erlangt werden nur für Admin Events</li>
+          <li>Behält dein Herz, wenn du in einem Kampf stirbst</li>
+          <li>Kann nicht im Survival erlangt werden – nur für Admin Events</li>
         </ul>
 
-        <h3>Befehle</h3>
+        <h3>⚡ Befehle</h3>
         <ul>
-          <li><code>/hearts set Spieler 1–3</code> Admin Befehl...</li>
-          <li><code>/hearts get Spieler</code> Zeigt an...</li>
-          <li><code>/hearts settings showCombatTimeRemainingInActionbar true false</code></li>
-          <li><code>/hearts give Spieler</code></li>
-          <li><code>/hearts set Spieler</code></li>
-          <li><code>/hearts get Spieler</code></li>
-          <li><code>/hearts linked pair Spieler1 Spieler2</code></li>
+          <li><code>/hearts set Spieler 1–3</code> – Anzahl der Herzen eines Spielers festlegen</li>
+          <li><code>/hearts get Spieler</code> – Zeigt aktuelle Herzen eines Spielers</li>
+          <li><code>/hearts settings showCombatTimeRemainingInActionbar true|false</code> – Zeigt Kampfzeit im Aktionsbalken</li>
+          <li><code>/hearts give Spieler</code> – Gib einem anderen Spieler ein Herz</li>
+          <li><code>/hearts set Spieler</code> – Ändert Status des verknüpften Herzens</li>
+          <li><code>/hearts get Spieler</code> – Zeigt Partner & Herz-Status</li>
+          <li><code>/hearts linked pair Spieler1 Spieler2</code> – Verknüpft zwei Spieler</li>
         </ul>
 
-        <h3>Gamerules</h3>
+        <h3>⚙️ Gamerules</h3>
         <ul>
-          <li><code>/gamerule sendSoulAmuletInformation true false</code></li>
-          <li><code>/gamerule banIfNoHearts true false</code></li>
-          <li><code>/gamerule allowTradingHearts true false</code></li>
-          <li><code>/gamerule showDeathScreen true false</code></li>
-          <li><code>/gamerule useLinkedHearts true false</code></li>
+          <li><code>/gamerule sendSoulAmuletInformation true|false</code> – Amulette posten Koordinaten im Chat</li>
+          <li><code>/gamerule banIfNoHearts true|false</code> – Bannt Spieler ohne Herzen</li>
+          <li><code>/gamerule allowTradingHearts true|false</code> – Erlaubt/verbietet Herz-Handel</li>
+          <li><code>/gamerule showDeathScreen true|false</code> – Todesscreen an/aus</li>
+          <li><code>/gamerule useLinkedHearts true|false</code> – Aktiviert verknüpfte Herzen</li>
         </ul>
       </div>
     </details>
 
-    <!-- Server Setup -->
+    <!-- Server -->
     <details>
-      <summary><span class="chev"></span>🛠️ Server Setup</summary>
+      <summary>🛠️ Server Setup</summary>
       <div class="content">
         <h2 id="server-setup">Server Setup</h2>
         <ol>
-          <li>Suche bei deinem Server Anbieter nach Modpacks...</li>
-          <li>Falls du lokal hosten willst: Installiere Minecraft <strong>NeoForge 1.21.1</strong>...</li>
+          <li><strong>Download:</strong> Lade die Server-Dateien herunter.</li>
+          <li><strong>Installation:</strong> Entpacke die Dateien in einen Ordner.</li>
+          <li><strong>Start:</strong> Starte <code>start.bat</code> (Windows) oder <code>start.sh</code> (Linux/Mac).</li>
+          <li><strong>Konfiguration:</strong> Bearbeite <code>server.properties</code>.</li>
+          <li><strong>Mods:</strong> Stelle sicher, dass alle Mods im <code>mods/</code>-Ordner sind.</li>
         </ol>
-        <ul>
-          <li><a class="btn" target="_blank" rel="noopener" href="https://modrinth.com/modpack/mc-helden-2-server-pack">Serverpack auf Modrinth</a></li>
-          <li><a class="btn" target="_blank" rel="noopener" href="https://legacy.curseforge.com/minecraft/modpacks/server-pack-m-helden-2">Serverpack auf Curseforge</a></li>
-        </ul>
-        <ol start="3">
-          <li>Konfiguriere Admin Befehle und Gamerules siehe Herzen Mod.</li>
-          <li>Teile deinen Server auf unserem Discord.</li>
-        </ol>
+        <p class="note">👉 Java 17 oder neuer wird benötigt!</p>
       </div>
     </details>
 
     <!-- Discord -->
     <details>
-      <summary><span class="chev"></span>💬 Discord</summary>
+      <summary>💬 Discord</summary>
       <div class="content">
         <h2 id="discord">Discord</h2>
-        <a class="btn" target="_blank" rel="noopener" href="https://discord.gg/9BpUFPfm2G">➡️ Discord beitreten</a>
-        <ul>
-          <li>Fragen stellen</li>
-          <li>Gute Server finden</li>
-          <li>Helfen</li>
-          <li>Mit anderen Spielern interagieren</li>
-        </ul>
+        <p>Trete unserem Discord-Server bei und werde Teil der Community:</p>
+        <a href="#" class="btn">🔗 Discord beitreten</a>
       </div>
     </details>
 
-    <!-- Update Log -->
+    <!-- Updates -->
     <details>
-      <summary><span class="chev"></span>📜 Update Log</summary>
+      <summary>📜 Update Log</summary>
       <div class="content">
-        <h2 id="update-log">Update Log</h2>
+        <h2 id="updates">Update Log</h2>
+        <h3>Version 1.4</h3>
         <ul>
-          <li><strong>v1.4</strong>: Ein Knopf der dich zum Wiki führt</li>
-          <li><strong>v1.5</strong>: Update auf 1.21.4 🤫</li>
+          <li>✅ Neue Mod: Iris Shaders</li>
+          <li>🔧 Bugfix: Simple Voice Chat verbessert</li>
+          <li>⚡ Performance-Optimierungen</li>
+        </ul>
+        <h3>Version 1.3</h3>
+        <ul>
+          <li>📦 Mods aktualisiert</li>
+          <li>💡 Stabilität im Multiplayer verbessert</li>
         </ul>
       </div>
     </details>
-
-    <footer>
-      <p>© MC-HELDEN 2 Wiki</p>
-    </footer>
-  </div>
-
-  <script>
-    // Klick auf Menüscroll
-    document.querySelectorAll('nav a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const target = document.getElementById(id);
-        if (target) {
-          const det =
+  </main>
+</body>
+</html>
