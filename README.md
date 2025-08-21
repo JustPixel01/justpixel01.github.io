@@ -154,7 +154,7 @@ Dieses Modpack enthält alle Mods aus dem Youtuber Projekt Minecraft Helden 2!
 So erstellst du ein MC-HELDEN 2 Server
 
 - Suche bei deinem Server Anbieter nach Modpacks bei entweder Curseforge oder Modrinth und installiere das Server Pack: MC-HELDEN 2 
-- Falls du den Server lokal hosten willst musst du selbst Minecraft NeoForge 1.21.1 installieren und dann die Mods und Configs aus dem Server Pack nehmen: Links zum Serverpack: Modrinth: https://modrinth.com/modpack/mc-helden-2-server-pack Curseforge: https://legacy.curseforge.com/minecraft/modpacks/server-pack-m-helden-2 Ein Tutorial wie man überhaupt selbst hostet müsst ihr einfach über Google finden.
+- Falls du den Server lokal hosten willst, musst du selbst Minecraft NeoForge 1.21.1 installieren und dann die Mods und Configs aus dem Server Pack nehmen: Links zum Serverpack: Modrinth: https://modrinth.com/modpack/mc-helden-2-server-pack Curseforge: https://legacy.curseforge.com/minecraft/modpacks/server-pack-m-helden-2 Ein Tutorial wie man überhaupt selbst hostet müsst ihr einfach über Google finden.
 - Konfiguriere Admin-Befehle und Gamerules (von der Herzen Mod)
 - Lade dein Server bei unserem Discord Server hoch
 
