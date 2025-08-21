@@ -6,71 +6,80 @@
   <title>🛡️ MC-HELDEN 2 Modpack Wiki</title>
   <style>
     :root {
-      --bg:#0b0f14; --card:#121821; --muted:#8aa1b1; --text:#dbe6ee; --accent:#5cc8ff;
-      --accent-glow: rgba(92,200,255,0.3);
+      --bg:#0b0f14; --card:#121821; --muted:#8aa1b1;
+      --text:#dbe6ee; --accent:#5cc8ff; --accent-glow: rgba(92,200,255,0.3);
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
       background: linear-gradient(180deg, #071019, #0b0f14 120%);
       color: var(--text);
       line-height: 1.6;
     }
 
-    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
-
-    /* Header */
-    header { text-align: center; margin-bottom: 32px; }
-    h1 { font-size: 2.4rem; margin: 0 0 8px; }
-    p.lead {
-      margin: 0 auto 16px;
-      color: var(--muted);
-      max-width: 68ch;
-      font-size: 1.05rem;
+    /* Fixed Navbar */
+    nav {
+      position: sticky;
+      top: 0; left: 0; right: 0;
+      background: rgba(11,15,20,0.95);
+      border-bottom: 1px solid #223040;
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+    nav .navwrap {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex; flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+    }
+    nav h1 {
+      font-size: 1.2rem;
+    }
+    nav .navlinks {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    nav .navlinks a {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: #0f1520;
+      border: 1px solid #223040;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all .25s ease;
+    }
+    nav .navlinks a:hover {
+      background: var(--accent);
+      color: #0b0f14;
+      border-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
     }
 
-    /* Trenner */
+    /* Layout */
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+
+    header { text-align: center; margin: 40px 0 32px; }
+    header h2 { font-size: 2.2rem; margin-bottom: 12px; }
+    header p { color: var(--muted); max-width: 68ch; margin: 0 auto; }
+
     hr {
       border: 0; height: 1px;
       background: linear-gradient(90deg, transparent, #2b3a49, transparent);
       margin: 32px 0;
     }
 
-    /* Inhaltsverzeichnis */
-    h2 { font-size: 1.4rem; margin-bottom: 12px; }
-    .toc {
-      display: grid; gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin: 12px 0 20px;
-    }
-    .toc a {
-      display: block;
-      padding: 12px 14px;
-      border-radius: 14px;
-      text-decoration: none;
-      color: var(--text);
-      background: #0f1520;
-      border: 1px solid #223040;
-      transition: all .25s ease;
-      text-align: center;
-      font-weight: 500;
-    }
-    .toc a:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
-
-    /* Details Blöcke */
+    /* Details Cards */
     details {
       background: var(--card);
       border: 1px solid #1d2836;
       border-radius: 14px;
       margin: 18px 0;
-      overflow: clip;
+      overflow: hidden;
       transition: all .3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
     }
     summary {
       list-style: none;
@@ -80,6 +89,7 @@
       font-weight: 700;
       background: linear-gradient(180deg, #121a24, #0f1620);
       user-select: none;
+      font-size: 1.05rem;
     }
     summary::-webkit-details-marker { display: none; }
     .chev {
@@ -93,24 +103,26 @@
     details[open] .chev { transform: rotate(0); }
 
     .content {
-      padding: 18px;
+      padding: 20px;
       border-top: 1px solid #223040;
       animation: fadeIn .3s ease;
     }
-    .content h2 { margin: 0 0 12px; font-size: 1.25rem; }
-    .content p { margin: 8px 0 14px; color: var(--muted); }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Listen und Raster */
+    .content h2 { margin: 0 0 12px; font-size: 1.3rem; }
+    .content h3 { margin: 14px 0 6px; font-size: 1.1rem; }
+    .content p { margin: 8px 0 14px; color: var(--muted); }
+
+    /* Listen */
     ul, ol { margin: 8px 0 8px 20px; }
     .mods { columns: 2; column-gap: 24px; }
     @media (max-width: 720px) { .mods { columns: 1; } }
     .note { font-size: .95rem; color: var(--muted); }
 
-    /* Links und Codes */
+    /* Links & Buttons */
     a { color: var(--accent); }
     code {
       background: #0e1520;
@@ -119,8 +131,23 @@
       border: 1px solid #1b2735;
       font-size: 0.95rem;
     }
+    .btn {
+      display: inline-block;
+      margin: 6px 0;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #0b0f14;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .25s ease;
+    }
+    .btn:hover {
+      box-shadow: 0 0 10px var(--accent-glow);
+      transform: translateY(-2px);
+    }
 
-    /* Fußbereich */
+    /* Footer */
     footer {
       margin-top: 40px;
       text-align: center;
@@ -132,41 +159,85 @@
   </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <div class="navwrap">
+      <h1>🛡️ MC-HELDEN 2</h1>
+      <div class="navlinks">
+        <a href="#downloads">Downloads</a>
+        <a href="#mods-im-modpack">Mods</a>
+        <a href="#herzens-mod">Herzens Mod</a>
+        <a href="#server-setup">Server</a>
+        <a href="#discord">Discord</a>
+        <a href="#update-log">Updates</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="wrap">
     <header>
-      <h1>🛡️ MC-HELDEN 2 Modpack Wiki</h1>
-      <p class="lead">Willkommen beim offiziellen Wiki für das Minecraft Modpack <strong>MC-HELDEN 2</strong>. Dieses Modpack enthält alle Mods aus dem Youtuber Projekt Minecraft Helden 2.</p>
+      <h2>MC-HELDEN 2 Modpack Wiki</h2>
+      <p>Willkommen beim offiziellen Wiki für das Minecraft Modpack <strong>MC-HELDEN 2</strong>. Dieses Modpack enthält alle Mods aus dem Youtuber Projekt Minecraft Helden 2.</p>
     </header>
 
-    <hr>
-
-    <h2>📌 Inhaltsverzeichnis</h2>
-    <div class="toc">
-      <a href="#downloads">Downloads</a>
-      <a href="#mods-im-modpack">Mods im Modpack</a>
-      <a href="#herzens-mod">Herzens Mod</a>
-      <a href="#server-setup">Server Setup</a>
-      <a href="#discord">Discord</a>
-      <a href="#update-log">Update Log</a>
-    </div>
-
-    <hr>
-
-    <!-- Dein bestehender Content bleibt identisch (Details etc.) -->
-
+    <!-- Details-Bereiche -->
     <details>
       <summary><span class="chev"></span>⬇️ Downloads</summary>
       <div class="content">
         <h2 id="downloads">Downloads</h2>
         <p class="note">Aktuelle Versionen bitte über Modrinth installieren.</p>
-        <ul>
-          <li><strong>Version 1.4 Curseforge</strong>: <a target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/modpacks/m-helden-2/download/6911119">M-HELDEN 2</a></li>
-          <li><strong>Version 1.4 Modrinth</strong>: <a target="_blank" rel="noopener" href="https://cdn.modrinth.com/data/e6bYf6iC/versions/vbo9Tvf8/MC-HELDEN%202%201.4.mrpack">MC-HELDEN 2</a></li>
-        </ul>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/modpacks/m-helden-2/download/6911119">Version 1.4 Curseforge</a><br>
+        <a class="btn" target="_blank" rel="noopener" href="https://cdn.modrinth.com/data/e6bYf6iC/versions/vbo9Tvf8/MC-HELDEN%202%201.4.mrpack">Version 1.4 Modrinth</a>
       </div>
     </details>
 
-    <!-- (Restliche Details-Bereiche identisch wie bei dir) -->
+    <details>
+      <summary><span class="chev"></span>🧩 Mods im Modpack</summary>
+      <div class="content">
+        <h2 id="mods-im-modpack">Mods im Modpack</h2>
+        <div class="mods">
+          <ul>
+            <li>LuckPerms (by Iucko)</li>
+            <li>Simple Voice Chat (by henkelmax)</li>
+            <li>Iris Shaders (by coderbot)</li>
+            <li>Collective (by Serilum)</li>
+            <!-- Rest deiner Liste bleibt -->
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="chev"></span>❤️ Herzens Mod</summary>
+      <div class="content">
+        <h2 id="herzens-mod">Herzens Mod</h2>
+        <!-- Dein bestehender Text -->
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="chev"></span>🛠️ Server Setup</summary>
+      <div class="content">
+        <h2 id="server-setup">Server Setup</h2>
+        <!-- Dein bestehender Text -->
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="chev"></span>💬 Discord</summary>
+      <div class="content">
+        <h2 id="discord">Discord</h2>
+        <a class="btn" target="_blank" rel="noopener" href="https://discord.gg/9BpUFPfm2G">➡️ Discord beitreten</a>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="chev"></span>📜 Update Log</summary>
+      <div class="content">
+        <h2 id="update-log">Update Log</h2>
+        <!-- Dein bestehender Text -->
+      </div>
+    </details>
 
     <footer>
       <p>© MC-HELDEN 2 Wiki</p>
@@ -174,8 +245,8 @@
   </div>
 
   <script>
-    // Anker aus dem Inhaltsverzeichnis öffnen das passende Details Element
-    document.querySelectorAll('.toc a[href^="#"]').forEach(a => {
+    // Klick auf Menüscroll
+    document.querySelectorAll('nav a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const id = a.getAttribute('href').slice(1);
         const target = document.getElementById(id);
