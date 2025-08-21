@@ -1,69 +1,52 @@
-MC-HELDEN 2 – Herzen Mod
+# MC-HELDEN 2 – Herzen Mod
 
 Die Mod bringt ein spezielles Herz-System ins Spiel, das für Server-Events oder Hardcore-Modi gedacht ist. Spieler können weniger Herzen haben, Herzen verlieren oder sogar an andere Spieler weitergeben. Admins haben dabei volle Kontrolle über das System.
 
-Items
+## Items
 
-Seelen-Amulett (Soul Amulet)
+### Seelen-Amulett (Soul Amulet)
+- Behält dein Herz, wenn du in einem Kampf stirbst
+- Kann nicht im Survival erlangt werden, nur für Admin-Events
 
-Behält dein Herz, wenn du in einem Kampf stirbst.
+## Befehle
 
-Kann nicht im Survival erlangt werden, nur für Admin-Events.
+- `/hearts set (Spieler) (1–3)`  
+  Admin-Befehl, um die Anzahl der Herzen eines Spielers festzulegen
 
-Befehle
+- `/hearts get (Spieler)`  
+  Zeigt an, wie viele Herzen ein Spieler aktuell hat
 
-/hearts set (Spieler) (1–3)
+- `/hearts settings showCombatTimeRemainingInActionbar (true/false)`  
+  Stellt ein, ob die verbleibende Kampfzeit im Aktionsbalken angezeigt wird
 
-Admin-Befehl, um die Anzahl der Herzen eines Spielers festzulegen.
+- `/hearts give (Spieler)`  
+  Gib einem anderen Spieler eines deiner Herzen
 
-/hearts get (Spieler)
+- `/hearts set (Spieler)`  
+  Ändert den Status des „verknüpften Herzens“ des Spielers und seines verbundenen Partners
 
-Zeigt an, wie viele Herzen ein Spieler aktuell hat.
+- `/hearts get (Spieler)`  
+  Zeigt den verknüpften Partner und den Status des verknüpften Herzens (noch da oder verloren) eines Spielers an
 
-/hearts settings showCombatTimeRemainingInActionbar (true/false)
+- `/hearts linked pair (Spieler1) (Spieler2)`  
+  Verknüpft zwei Spieler miteinander (Linked Hearts)
 
-Stellt ein, ob die verbleibende Kampfzeit im Aktionsbalken angezeigt wird.
+## Gamerules
 
-/hearts give (Spieler)
+- `/gamerule sendSoulAmuletInformation (true/false)`  
+  Wenn aktiviert:  
+  - Fallen gelassene Seelen-Amulette zeigen ihre Koordinaten im Chat  
+  - Aufgehobene Amulette zeigen an, wer sie genommen hat
 
-Gib einem anderen Spieler eines deiner Herzen.
+- `/gamerule banIfNoHearts (true/false)`  
+  Bestimmt, ob ein Spieler gebannt wird, wenn er alle Herzen verloren hat
 
-/hearts set (Spieler)
+- `/gamerule allowTradingHearts (true/false)`  
+  Erlaubt oder verbietet Spielern, Herzen zu handeln
 
-Ändert den Status des „verknüpften Herzens“ des Spielers und seines verbundenen Partners.
+- `/gamerule showDeathScreen (true/false)`  
+  Zeigt oder versteckt den Todesscreen, wenn ein Herz verloren geht  
+  Funktioniert nur mit aktivierter Gamerule `doImmediateRespawn` (wird automatisch durch die Mod aktiviert)
 
-/hearts get (Spieler)
-
-Zeigt den verknüpften Partner und den Status des verknüpften Herzens (noch da oder verloren) eines Spielers an.
-
-/hearts linked pair (Spieler1) (Spieler2)
-
-Verknüpft zwei Spieler miteinander (Linked Hearts).
-
-Gamerules
-
-/gamerule sendSoulAmuletInformation (true/false)
-
-Wenn aktiviert:
-
-Wenn ein Seelen-Amulett fallen gelassen wird, erscheinen die Koordinaten im Chat.
-
-Wenn es aufgehoben wird, wird angezeigt, wer es genommen hat.
-
-/gamerule banIfNoHearts (true/false)
-
-Bestimmt, ob ein Spieler gebannt wird, wenn er alle Herzen verloren hat.
-
-/gamerule allowTradingHearts (true/false)
-
-Erlaubt oder verbietet Spielern, Herzen zu handeln.
-
-/gamerule showDeathScreen (true/false)
-
-Zeigt oder versteckt den Todesscreen, wenn ein Herz verloren geht.
-
-Funktioniert nur mit aktivierter Gamerule doImmediateRespawn (wird automatisch durch die Mod aktiviert).
-
-/gamerule useLinkedHearts (true/false)
-
-Aktiviert oder deaktiviert das System der verknüpften Herzen.
+- `/gamerule useLinkedHearts (true/false)`  
+  Aktiviert oder deaktiviert das System der verknüpften Herzen
